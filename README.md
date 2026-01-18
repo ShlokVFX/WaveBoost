@@ -2,8 +2,9 @@
 
 ## Summary
 
-WaveBoost is a custom CUDA implementation of Flash Attention 2, optimized for high-performance attention mechanisms in transformer models. This repository contains hand-crafted kernels benchmarked against PyTorch's production-ready baseline, demonstrating core algorithm correctness while identifying optimization opportunities. The implementation includes comprehensive performance analysis, memory profiling, and visualization tools for kernel development.
-
+WaveBoost is my personal repository to experiment with inference-time optimizations.
+I implemented individual CUDA kernels for LLM inference and
+compared them directly against the corresponding kernels used by vLLM.
 ---
 
 ## 🎯 Project Overview
@@ -95,66 +96,20 @@ print(f"Output shape: {output.shape}")
 
 ---
 
-## 📁 Project Structure
-
-```
-WaveBoost/
-├── README.md                          # This file
-├── kernels/
-│   └── attention/
-│       └── flash_attention/
-│           ├── Flash.cu               # Main CUDA kernel implementation
-│           ├── main.cpp               # C++ wrapper and PyTorch binding
-│           ├── benchmark_comparison.py# Comprehensive benchmark suite
-│           ├── compare_baseline.py    # Quick PyTorch comparison
-│           ├── plot_benchmark.py      # Visualization generator
-│           ├── PERFORMANCE_ANALYSIS.md# Detailed optimization analysis
-│           ├── COMPARISON_ANALYSIS.md # Performance comparison report
-│           ├── Readme.md              # Kernel-specific documentation
-│           └── visualizations/        # Generated benchmark graphs
-│               ├── 1_latency.png
-│               ├── 2_throughput.png
-│               ├── 3_memory.png
-│               ├── 4_dashboard.png
-│               └── 5_speedup.png
-└── benchmarks/
-    └── flash_attention/
-        ├── latency/
-        │   └── latency.csv
-        ├── throughput/
-        │   └── throughput.csv
-        ├── memory/
-        │   └── memory.csv
-        └── profiling/
-            └── profiler.txt
-```
-
----
 
 ## 📈 Performance Analysis
 
-### Optimization Opportunities
+### Optimization Opportunities[Roadmap for current FA2 in cuda implementation]
 
-The current implementation demonstrates the core Flash Attention algorithm. Performance analysis identifies these optimization areas:
-
-#### Priority 1: Quick Wins (Est. 2-3x speedup)
 - Use `float4` vectorized memory loads
 - Increase thread block size from 32 to 256
 - Add pragma loop unrolling (`#pragma unroll`)
-
-#### Priority 2: Medium Effort (Est. 3-5x additional)
 - Implement double buffering for memory operations
 - Vectorize exp/softmax computations
 - Template specialization for common dimensions
-
-#### Priority 3: Advanced (Est. 2x additional)
 - Persistent kernel patterns
 - Ring attention for multi-GPU
 - Quantization support (FP16/BF16)
-
-See `kernels/attention/flash_attention/PERFORMANCE_ANALYSIS.md` for detailed recommendations.
-
----
 
 ## 📊 Benchmark Results
 
@@ -271,9 +226,9 @@ For detailed license information, see the full [MIT License](LICENSE).
 ## 📞 Support & Contact
 
 For issues, questions, or feature requests:
-- 📧 Email: your-email@example.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/WaveBoost/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/WaveBoost/discussions)
+- 📧 Email: shlokvfx2003@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/ShlokVFX/WaveBoost/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/ShlokVFX/WaveBoost/discussions)
 
 ---
 
