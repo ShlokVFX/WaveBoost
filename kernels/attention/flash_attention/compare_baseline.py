@@ -25,7 +25,7 @@ def load_custom_benchmarks():
                 if row['kernel'] == 'flash':
                     results['latency_ms'] = float(row['latency_ms'])
     
-    # Load throughput
+    # Load throughput #check
     throughput_file = benchmark_dir / "throughput" / "throughput.csv"
     if throughput_file.exists():
         with open(throughput_file) as f:
