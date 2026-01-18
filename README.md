@@ -5,6 +5,7 @@
 WaveBoost is my personal repository to experiment with inference-time optimizations.
 I implemented individual CUDA kernels for LLM inference and
 compared them directly against the corresponding kernels used by vLLM.
+
 ---
 
 ## 🎯 Project Overview
@@ -95,6 +96,7 @@ print(f"Output shape: {output.shape}")
 ```
 
 ---
+
 
 
 ## 📈 Performance Analysis
