@@ -1,0 +1,45 @@
+nohup: ignoring input
+GPU: NVIDIA GeForce RTX 3060
+PyTorch: 2.8.0+cu128
+
+
+======================================================================
+FLASH ATTENTION BENCHMARK VISUALIZATION
+======================================================================
+
+Output directory: /mnt/d/GITHUB/WaveBoost/kernels/attention/flash_attention/visualizations
+
+Loading benchmark data...
+  Custom Latency: 3.3185 ms
+  Custom Throughput: 308,574 T/s
+  Custom Memory: 20.22 MB
+
+  Benchmarking PyTorch...
+  PyTorch Latency: 0.5800 ms
+  PyTorch Throughput: 882,699 T/s
+
+Generating Chart 1: Latency Comparison...
+  ✓ Saved: 1_latency.png
+Generating Chart 2: Throughput Comparison...
+  ✓ Saved: 2_throughput.png
+Generating Chart 3: Memory Comparison...
+  ✓ Saved: 3_memory.png
+Generating Chart 4: Performance Dashboard...
+  ✓ Saved: 4_dashboard.png
+Generating Chart 5: Speedup Analysis...
+  ✓ Saved: 5_speedup.png
+
+======================================================================
+✓ ALL VISUALIZATIONS GENERATED SUCCESSFULLY
+======================================================================
+
+Graphs saved in: /mnt/d/GITHUB/WaveBoost/kernels/attention/flash_attention/visualizations
+
+Generated files:
+  1. 1_latency.png - Latency comparison
+  2. 2_throughput.png - Throughput comparison
+  3. 3_memory.png - Memory usage comparison
+  4. 4_dashboard.png - Performance dashboard
+  5. 5_speedup.png - Speedup analysis
+
+
