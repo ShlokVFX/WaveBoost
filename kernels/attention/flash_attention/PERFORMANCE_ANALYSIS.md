@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Your custom Flash Attention 2 CUDA implementation has been compared against PyTorch's highly optimized `F.scaled_dot_product_attention` baseline. While your implementation demonstrates the core Flash Attention algorithm correctly, there is a significant performance gap.
+custom Flash Attention 2 CUDA implementation has been compared against PyTorch's highly optimized `F.scaled_dot_product_attention` baseline. While implementation demonstrates the core Flash Attention algorithm correctly, there is a significant performance gap.
 
 ---
 
@@ -17,29 +17,29 @@ Your custom Flash Attention 2 CUDA implementation has been compared against PyTo
 
 ### Results
 
-| Metric | Your Implementation | PyTorch Baseline | Ratio | Winner |
+| Metric | Implementation | PyTorch Baseline | Ratio | Winner |
 |--------|-------------------|-----------------|-------|--------|
 | **Latency (ms)** | 3.3185 | 0.2211 | 15.01x | PyTorch |
 | **Throughput (T/s)** | 308,574 | 2,316,037 | 7.51x | PyTorch |
-| **Peak Memory (MB)** | 20.22 | ~24 | 1.19x | Your Impl ✓ |
+| **Peak Memory (MB)** | 20.22 | ~24 | 1.19x | Impl ✓ |
 
 ---
 
 ## Key Findings
 
 ### 🔴 Speed Gap
-- **PyTorch is 15x faster** than your implementation
-- Your latency: 3.32 ms
+- **PyTorch is 15x faster** than implementation
+- latency: 3.32 ms
 - PyTorch latency: 0.22 ms
 
 ### 🔴 Throughput Gap  
 - **PyTorch achieves 7.5x higher throughput**
-- Your throughput: 308K tokens/sec
+- throughput: 308K tokens/sec
 - PyTorch throughput: 2.3M tokens/sec
 
 ### 🟢 Memory Efficiency (Minor Advantage)
-- Your implementation uses **~5% less peak memory**
-- Your peak: 20.22 MB vs PyTorch: ~24 MB
+- implementation uses **~5% less peak memory**
+- peak: 20.22 MB vs PyTorch: ~24 MB
 - This is likely not significant at production scale
 
 ---
@@ -206,7 +206,7 @@ float4 data = src[threadIdx.x];
 ## Recommendations
 
 ### Immediate Actions
-1. ✅ Profile your kernel with `nsys`/`nvprof`
+1. ✅ Profile kernel with `nsys`/`nvprof`
 2. ✅ Identify memory bandwidth bottlenecks
 3. ✅ Implement Priority 1 optimizations
 
@@ -224,7 +224,7 @@ float4 data = src[threadIdx.x];
 
 ## Testing & Validation
 
-Your implementation is functionally correct. The performance gap is expected because:
+implementation is functionally correct. The performance gap is expected because:
 - ✅ PyTorch team has hundreds of person-hours of optimization
 - ✅ Hardware-specific tuning for RTX 3060
 - ✅ Advanced compiler techniques not visible in source code

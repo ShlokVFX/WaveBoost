@@ -10,16 +10,18 @@ compared them directly against the corresponding kernels used by vLLM.
 
 ## 🎯 Project Overview
 
-| ID | Kernel Name | Description |
-|:--:|-------------|-------------|
-| 1 | **Flash Attention 2** | Custom CUDA implementation of Flash Attention with IO-aware attention computation, reducing memory bandwidth while maintaining numerical stability |
+| ID | Kernel Name | Description | Status |
+|:--:|-------------|-------------|--------|
+| 1 | **Flash Attention 2 (Custom CUDA)** | Custom CUDA implementation with IO-aware attention computation, reducing memory bandwidth while maintaining numerical stability | ✅ Complete |
+| 2 | **PyTorch SDPA** | PyTorch's scaled_dot_product_attention baseline for comparison | ✅ Complete |
+| 3 | **vLLM Attention** | Wrapper integration for vLLM's optimized Flash Attention kernels (with PyTorch fallback) | ✅ Complete |
 
 ---
 
 ## 📊 Performance Dashboard
 
 ### Benchmark Comparison
-Your implementation benchmarked against PyTorch's optimized baseline:
+Implementation benchmarked against PyTorch's optimized baseline:
 
 ![Performance Dashboard](kernels/attention/flash_attention/visualizations/4_dashboard.png)
 
@@ -93,6 +95,26 @@ V = torch.randn(batch_size, seq_len, d, device='cuda')
 # Run custom implementation
 output = flash_attention_forward(Q, K, V)
 print(f"Output shape: {output.shape}")
+```
+
+### Three-Way Comparison: Custom FA2 vs PyTorch vs vLLM
+
+Compare all three attention implementations:
+
+```bash
+cd kernels/attention/vllm_attention
+python compare_all_attention.py
+```
+
+This generates a comprehensive comparison table:
+
+```
+| Implementation | Latency (ms) | Throughput (T/s) | Memory (MB) |
+|----------------|--------------|------------------|-------------|
+| PyTorch SDPA   |      0.2095  |      2,443,582   |     10.88   |
+| vLLM           |      0.5638  |        908,085   |     10.88   |
+| Naive          |      0.3273  |      1,564,268   |     10.62   |
+| Custom FA2     |      3.3185  |        308,574   |     20.22   |
 ```
 
 ---

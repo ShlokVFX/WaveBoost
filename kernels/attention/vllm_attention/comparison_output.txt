@@ -1,0 +1,49 @@
+Warning: vLLM not installed. Using fallback implementation.
+
+==========================================================================================
+THREE-WAY ATTENTION COMPARISON
+Custom FA2 vs PyTorch SDPA vs vLLM vs Naive
+==========================================================================================
+
+GPU: NVIDIA GeForce RTX 3060
+PyTorch: 2.8.0+cu128
+
+[Loading Custom FA2 Benchmarks]
+  ✓ Custom FA2 Latency: 3.3185 ms
+  ✓ Custom FA2 Throughput: 308,574 T/s
+  ✓ Custom FA2 Memory: 20.22 MB
+
+[Benchmarking PyTorch SDPA]
+  ✓ Latency: 0.2095 ms (±0.0262)
+  ✓ Throughput: 2,443,582 T/s
+  ✓ Memory: 10.88 MB
+
+[Benchmarking vLLM Attention]
+  ✓ Latency: 0.5638 ms (±0.0402)
+  ✓ Throughput: 908,085 T/s
+  ✓ Memory: 10.88 MB
+
+[Benchmarking Naive Attention]
+  ✓ Latency: 0.3273 ms (±0.0530)
+  ✓ Throughput: 1,564,268 T/s
+  ✓ Memory: 10.62 MB
+
+==========================================================================================
+COMPARISON ANALYSIS
+==========================================================================================
+
+| Implementation | Latency (ms) | Throughput (T/s) | Memory (MB) | vs Fastest |
+|----------------|--------------|------------------|-------------|-----------|
+| Custom FA2                       |       3.3185 |          308,574 |       20.22 |     15.84x |
+| PyTorch SDPA                     |       0.2095 |        2,443,582 |       10.88 |      1.00x |
+| vLLM                             |       0.5638 |          908,085 |       10.88 |      2.69x |
+| Naive                            |       0.3273 |        1,564,268 |       10.62 |      1.56x |
+
+==========================================================================================
+
+🏆 Fastest: PyTorch SDPA (0.2095 ms)
+💾 Most Memory Efficient: Naive (10.62 MB)
+⚡ Highest Throughput: PyTorch SDPA (2,443,582 T/s)
+
+==========================================================================================
+
