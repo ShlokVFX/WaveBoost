@@ -5,7 +5,7 @@ import triton.testing
 import torch.nn as nn
 import os
 
-# Import CUDA wrapper
+# Import CUDA wrappe
 try:
     from cuda_conv1d import cuda_conv1d_solution, get_cuda_conv1d
     CUDA_AVAILABLE = True
