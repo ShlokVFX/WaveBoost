@@ -1,9 +1,20 @@
-# WaveBoost - Minimal Flash Attention CUDA Implementation
+# WaveBoost - Inference Kernel
 
 ## Summary
 
 WaveBoost is my personal repository to experiment with inference-time optimizations.
 I implemented individual CUDA kernels for LLM inference.
+
+---
+
+## 📊 Benchmarks
+
+### Attention Mechanisms Comparison
+Performance comparison between Multi-Head Attention (MHA) and Grouped Query Attention (GQA):
+
+![Attention Mechanisms Latency Comparison](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/visualization/attention_latency_comparison.png)
+
+GQA demonstrates superior memory efficiency while maintaining competitive latency through optimized grouped computation without explicit KV replication.
 
 ---
 
