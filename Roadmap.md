@@ -13,33 +13,33 @@
 
 ## Transformer Inference Internals
 
-* [ ✅ ] Implement naive attention
-* [ ✅ ] Implement causal attention
-* [ ✅ ] Implement MHA
-* [ ✅ ] Implement GQA
-* [ ✅ ] Benchmark latency & tokens/sec
-* [ ✅ ] Analyze MHA vs GQA performance
-* [ ] Prefill vs decode separation
+* [ ✅ ] Implement naive attention ([attention.py](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/attention.py))
+* [ ✅ ] Implement causal attention ([attention.py](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/attention.py))
+* [ ✅ ] Implement MHA ([attention.py](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/attention.py))
+* [ ✅ ] Implement GQA ([attention.py](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/attention.py))
+* [ ✅ ] Benchmark latency & tokens/sec ([attention_comparison_all_tests.png](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/visualization/attention_comparison_all_tests.png))
+* [ ✅ ] Analyze MHA vs GQA performance ([attention_comparison_all_tests.png](notes/Physics%20of%20LLM%20inference/Transformer%20mechanics/visualization/attention_comparison_all_tests.png))
+* [ ] Prefill vs decode separation 
 
 ---
 
 ## KV Cache
 
-* [ ✅ ] Implement KV cache
+* [ ✅ ] Implement KV cache ([text_generation_gpt2.py](notes/text_generation_gpt2.py))
 * [ ] Measure memory growth vs sequence length
 * [ ] Decode-only attention using KV cache
 * [ ] Visualize KV cache layout
-* [ ✅ ] Benchmark with and without KV cache
+* [ ✅ ] Benchmark with and without KV cache ([kv_cache_comparison.png](notes/visualization/kv_cache_comparison.png))
 
 ---
 
 ## GPU Kernels & Performance
 
-* [ ✅ ] Write Triton matmul kernel
-* [ ✅ ] Tune tile sizes
-* [ ✅ ] Use shared memory
-* [ ✅ ] Measure occupancy
-* [ ✅ ] Profile kernel execution
+* [  ] Write Triton matmul kernel
+* [  ] Tune tile sizes
+* [  ] Use shared memory
+* [  ] Measure occupancy
+* [  ] Profile kernel execution
 
 ---
 
