@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import os
 import math
 import pandas as pd
-from attention import MultiHeadAttention, GroupedQueryAttention, attention, causal_attention
+from attention import MultiHeadAttention, GroupedQueryAttention, attention, causal_attention 
 
 def benchmark_attention():
     # Set device

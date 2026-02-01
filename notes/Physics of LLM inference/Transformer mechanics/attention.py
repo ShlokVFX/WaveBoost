@@ -102,3 +102,48 @@ class GroupedQueryAttention(nn.Module):
 
         return self.out_proj(out)
     
+# MLA
+class MultiLatentAttention(nn.Module):
+    def __init__(self, hidden_dim, num_q_heads, latent_dim):
+        super().__init__()
+
+        assert hidden_dim % num_q_heads == 0
+
+        self.num_q_heads = num_q_heads
+        self.head_dim = hidden_dim // num_q_heads
+        self.latent_dim = latent_dim
+
+        self.q_proj = nn.Linear(hidden_dim, hidden_dim)
+
+        # K/V compressed into latent space
+        self.k_latent = nn.Linear(hidden_dim, latent_dim, bias=False)
+        self.v_latent = nn.Linear(hidden_dim, latent_dim, bias=False)
+
+        # Latent → per-head K/V
+        self.k_proj = nn.Linear(latent_dim, num_q_heads * self.head_dim, bias=False)
+        self.v_proj = nn.Linear(latent_dim, num_q_heads * self.head_dim, bias=False)
+
+        self.out_proj = nn.Linear(hidden_dim, hidden_dim)
+
+    def forward(self, x):
+        B, S, _ = x.shape
+
+        # Q: BSH → BQHSD
+        q = self.q_proj(x).view(B, S, self.num_q_heads, self.head_dim).transpose(1, 2)
+
+        # Latent K/V: BSH → BSR
+        k_lat = self.k_latent(x)
+        v_lat = self.v_latent(x)
+
+        # Expand latent → per-head K/V
+        # BSR → BS(QH*D) → BQHSD
+        k = self.k_proj(k_lat).view(B, S, self.num_q_heads, self.head_dim).transpose(1, 2)
+        v = self.v_proj(v_lat).view(B, S, self.num_q_heads, self.head_dim).transpose(1, 2)
+
+        # Attention
+        out = causal_attention(q, k, v)
+
+        # BQHSD → BSH
+        out = out.transpose(1, 2).contiguous().view(B, S, -1)
+
+        return self.out_proj(out)
