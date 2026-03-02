@@ -1,0 +1,19 @@
+[project]
+name = "continuous-batching"
+version = "0.1.0"
+description = "Simulation of Continuous and Selective Batching for LLM inference"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24"
+]
+
+[project.scripts]
+run-batching = "batching_engine.main:run_experiment"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/batching_engine"]
